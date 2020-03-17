@@ -1,8 +1,8 @@
 # escape=`
 # source: https://github.com/microsoft/dotnet-framework-docker/blob/master/4.8/runtime/windowsservercore-ltsc2019/Dockerfile
 
-ARG WINDOWS_PATCH="20191210"
-FROM mcr.microsoft.com/dotnet/framework/runtime:3.5-${WINDOWS_PATCH}-windowsservercore-ltsc2019
+ARG DOTNET_PATCH="20200211"
+FROM mcr.microsoft.com/dotnet/framework/runtime:3.5-${DOTNET_PATCH}-windowsservercore-ltsc2019
 
 # Install .NET 4.8
 RUN curl -fSLo dotnet-framework-installer.exe https://download.visualstudio.microsoft.com/download/pr/7afca223-55d2-470a-8edc-6a1739ae3252/abd170b4b0ec15ad0222a809b761a036/ndp48-x86-x64-allos-enu.exe `
