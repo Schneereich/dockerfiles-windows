@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  traefik:
+    build: .
+    image: schneereich/traefik:2.2.0-servercore-1809
+    # Enables the web UI and tells Traefik to listen to docker
+    command: 
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.endpoint=npipe:////./pipe/docker_engine
+      # dynamic tls configuration traefik.toml
+      - --providers.file.directory=/configuration/
+      - --providers.file.watch=true
+      # HTTP
+      - --entrypoints.web.address=:80
+      # HTTPS
+      - --entrypoints.websecure.address=:443
+    ports:
+      # HTTP
+      - "80:80"
+      # HTTPS
+      - "443:443"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # dynamic tls configuration traefik.toml
+      - .:c:\configuration
+      # SSL certificates
+      - .\certs:c:\certs
+      # So that Traefik can listen to the Docker events
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+
+networks:
+  default:
+    external:
+      name: nat

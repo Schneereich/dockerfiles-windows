@@ -1,0 +1,4 @@
+# dynamic configuration
+[[tls.certificates]]
+  certFile = "/certs/portainer.local.crt"
+  keyFile = "/certs/portainer.local.key"
