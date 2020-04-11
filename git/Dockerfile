@@ -1,6 +1,6 @@
 # escape=`
 # global variables
-ARG WINDOWS_PATCH="KB4512578"
+ARG WINDOWS_PATCH="KB4538461"
 ARG GIT_PATH="C:\git"
 
 # source: https://github.com/sixeyed/dockerfiles-windows/blob/master/git/windowsservercore/ltsc2019/Dockerfile
