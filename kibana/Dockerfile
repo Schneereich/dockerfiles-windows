@@ -1,7 +1,8 @@
 # source: https://github.com/sixeyed/diamol/blob/master/images/kibana/windows/Dockerfile
-FROM mcr.microsoft.com/windows/nanoserver:1809 as download
-
 ARG KIBANA_VERSION="7.6.2"
+
+FROM mcr.microsoft.com/windows/nanoserver:1809 as download
+ARG KIBANA_VERSION
 
 # https://artifacts.elastic.co/downloads/kibana/kibana-oss-7.6.2-windows-x86_64.zip
 

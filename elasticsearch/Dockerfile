@@ -1,6 +1,8 @@
 # soure: https://github.com/sixeyed/diamol/blob/master/images/elasticsearch/windows/Dockerfile
-FROM mcr.microsoft.com/windows/nanoserver:1809 as download
 ARG ELASTIC_VERSION="7.6.2"
+
+FROM mcr.microsoft.com/windows/nanoserver:1809 as download
+ARG ELASTIC_VERSION
 
 # https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-6.8.5.zip
 
