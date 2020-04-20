@@ -6,7 +6,7 @@ ARG ELASTIC_VERSION
 
 # https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-6.8.5.zip
 
-RUN curl -o elasticsearch.zip https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-%ELASTIC_VERSION%.zip
+RUN curl -o elasticsearch.zip https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-%ELASTIC_VERSION%-windows-x86_64.zip
 RUN tar -xzf elasticsearch.zip
 
 # elasticsearch
