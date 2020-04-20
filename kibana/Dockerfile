@@ -10,7 +10,7 @@ RUN md C:\\kibana-%KIBANA_VERSION%-windows-x86_64 && \
     tar -xzf kibana.zip
 
 WORKDIR /kibana-${KIBANA_VERSION}-windows-x86_64
-RUN rm -f node\\node.exe
+RUN del /Q node\\node.exe
 
 FROM schneereich/node:10.19.0-nanoserver-1809
 ARG KIBANA_VERSION
