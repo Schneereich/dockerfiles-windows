@@ -1,5 +1,5 @@
-ARG core=mcr.microsoft.com/windows/servercore:1809-KB4512578
-ARG target=mcr.microsoft.com/windows/nanoserver:1809-KB4512578
+ARG core=mcr.microsoft.com/windows/servercore:1809-KB4538461
+ARG target=mcr.microsoft.com/windows/nanoserver:1809-KB4538461
 FROM $core as download
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -25,7 +25,7 @@ RUN @( \
       gpg --keyserver ha.pool.sks-keyservers.net --recv-keys $_ ; \
     }
 
-ENV NODE_VERSION 8.16.2
+ENV NODE_VERSION 10.19.0
 
 RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/SHASUMS256.txt.asc' -f $env:NODE_VERSION) -OutFile 'SHASUMS256.txt.asc' -UseBasicParsing ; \
     gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc
@@ -36,7 +36,7 @@ RUN Invoke-WebRequest $('https://nodejs.org/dist/v{0}/node-v{0}-win-x64.zip' -f 
     Expand-Archive node.zip -DestinationPath C:\ ; \
     Rename-Item -Path $('C:\node-v{0}-win-x64' -f $env:NODE_VERSION) -NewName 'C:\nodejs'
 
-ENV YARN_VERSION 1.19.1
+ENV YARN_VERSION 1.22.4
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
     Invoke-WebRequest $('https://github.com/yarnpkg/yarn/releases/download/v{0}/yarn-{0}.msi' -f $env:YARN_VERSION) -OutFile yarn.msi -UseBasicParsing ; \
@@ -49,9 +49,9 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
       ) -notcontains $sig.SignerCertificate.Thumbprint) { Write-Error 'Unknown signer certificate' } ; \
     Start-Process msiexec.exe -ArgumentList '/i', 'yarn.msi', '/quiet', '/norestart' -NoNewWindow -Wait
 
-ENV GIT_VERSION 2.23.0
-ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.1/MinGit-${GIT_VERSION}-64-bit.zip
-ENV GIT_SHA256 8f65208f92c0b4c3ae4c0cf02d4b5f6791d539cd1a07b2df62b7116467724735
+ENV GIT_VERSION 2.26.2
+ENV GIT_DOWNLOAD_URL https://github.com/git-for-windows/git/releases/download/v${GIT_VERSION}.windows.1/MinGit-${GIT_VERSION}-busybox-64-bit.zip
+ENV GIT_SHA256 e834ea73fe093fb180dc45f67a1f2a7a566dab53d1d45bc3cd150106f5c40520
 
 RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 ; \
     Invoke-WebRequest -UseBasicParsing $env:GIT_DOWNLOAD_URL -OutFile git.zip; \
@@ -74,4 +74,4 @@ USER ContainerUser
 
 CMD [ "node.exe" ]
 
-# docker build -t schneereich/node:8.16.2-nanoserver-1809 .
+# docker build -t schneereich/node:10.19.0-nanoserver-1809 .
