@@ -25,7 +25,7 @@ ARG GIT_DOWNLOAD_SHA256="dd36f76a815b993165e67ad3cbc8f5b2976e5757a0c808a4a92fb72
 ARG GIT_PATH
 
 RUN Write-Host "Downloading Git version: ${env:GIT_VERSION}, release: ${env:GIT_RELEASE_NUMBER}"; `
-    Invoke-WebRequest -OutFile git.7z.exe -Uri "https://github.com/git-for-windows/git/releases/download/v${env:GIT_VERSION}.windows.${env:GIT_RELEASE_NUMBER}/PortableGit-${env:GIT_VERSION}-64-bit.7z.exe" `
+    Invoke-WebRequest -OutFile git.7z.exe -Uri "https://github.com/git-for-windows/git/releases/download/v${env:GIT_VERSION}.windows.${env:GIT_RELEASE_NUMBER}/PortableGit-${env:GIT_VERSION}-64-bit.7z.exe"; `
     if ((Get-FileHash git.7z.exe -Algorithm sha256).Hash -ne $env:GIT_DOWNLOAD_SHA256) {exit 1}; `
 	& 'C:\Program Files\7-Zip\7z.exe' x -oC:\git .\git.7z.exe;
 
