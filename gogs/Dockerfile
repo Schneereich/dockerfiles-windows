@@ -38,7 +38,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 ARG GOGS_VERSION
 
 RUN Write-Host "Downloading: ${env:GOGS_VERSION}"; `
-	Invoke-WebRequest -Uri "https://cdn.gogs.io/${env:GOGS_VERSION}/gogs_${env:GOGS_VERSION}_windows_amd64.zip" -OutFile 'gogs.zip'; `
+	Invoke-WebRequest -Uri "https://dl.gogs.io/${env:GOGS_VERSION}/gogs_${env:GOGS_VERSION}_windows_amd64.zip" -OutFile 'gogs.zip'; `
 	Write-Host 'Expanding Gogs...'; `
 	Expand-Archive gogs.zip -DestinationPath C:\;
 
