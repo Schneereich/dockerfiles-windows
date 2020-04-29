@@ -1,3 +1,4 @@
+# docker build -t schneereich/kibana:7.6.2-nanoserver-1809 .
 # source: https://github.com/sixeyed/diamol/blob/master/images/kibana/windows/Dockerfile
 ARG KIBANA_VERSION="7.6.2"
 

@@ -1,4 +1,6 @@
 # escape=`
+# docker build -t schneereich/git:2.23.0-nanoserver-1809 .
+
 # global variables
 ARG WINDOWS_PATCH="KB4538461"
 ARG GIT_PATH="C:\git"
@@ -32,5 +34,3 @@ COPY --from=installer ${GIT_PATH} .
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%;%GIT_PATH%\cmd;%GIT_PATH%\mingw64\bin;%GIT_PATH%\usr\bin"
 USER ContainerUser
-
-# docker build -t schneereich/git:2.23.0-nanoserver-1809 .

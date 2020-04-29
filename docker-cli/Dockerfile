@@ -1,4 +1,6 @@
 # escape=`
+# docker build -t schneereich/docker-cli:19.03.1-nanoserver-1809 .
+
 # global variables
 ARG WINDOWS_PATCH="KB4538461"
 ARG DOCKER_PATH="C:\docker"
@@ -49,5 +51,3 @@ COPY --from=installer C:/Windows/System32/netapi32.dll C:/Windows/System32/netap
 
 WORKDIR ${DOCKER_PATH}
 CMD [ "docker.exe" ]
-
-# docker build -t schneereich/docker-cli:19.03.1-nanoserver-1809 .

@@ -1,4 +1,5 @@
-# soure: https://github.com/sixeyed/diamol/blob/master/images/elasticsearch/windows/Dockerfile
+# docker build -t schneereich/elasticsearch:7.6.2-nanoserver-1809
+# source: https://github.com/sixeyed/diamol/blob/master/images/elasticsearch/windows/Dockerfile
 ARG ELASTIC_VERSION="7.6.2"
 
 FROM mcr.microsoft.com/windows/nanoserver:1809 as download

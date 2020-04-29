@@ -1,3 +1,5 @@
+# docker build -t schneereich/node:10.19.0-nanoserver-1809 .
+# source: https://github.com/StefanScherer/dockerfiles-windows/blob/master/node/10/Dockerfile
 ARG core=mcr.microsoft.com/windows/servercore:1809-KB4538461
 ARG target=mcr.microsoft.com/windows/nanoserver:1809-KB4538461
 FROM $core as download
@@ -73,5 +75,3 @@ RUN setx %SETX% PATH "%PATH%;C:\nodejs;C:\yarn\bin;C:\git\cmd;C:\git\mingw64\bin
 USER ContainerUser
 
 CMD [ "node.exe" ]
-
-# docker build -t schneereich/node:10.19.0-nanoserver-1809 .
